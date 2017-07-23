@@ -5,11 +5,12 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 %   is 1. This is often a good preprocessing step to do when
 %   working with learning algorithms.
 
-mu = mean(X);
+mu = nanmean(X);
 X_norm = bsxfun(@minus, X, mu);
 
-sigma = std(X_norm);
-X_norm = bsxfun(@rdivide, X_norm, sigma);
+sigma = nanstd(X_norm);
+X_norm = X_norm ./ sigma;
+X_norm(isnan(X_norm)) = 0;
 
 
 % ============================================================

@@ -227,6 +227,7 @@ pause;
 [U, S] = pca(X_norm);
 Z = projectData(X_norm, U, 2);
 
+
 % Plot in 2D
 figure;
 plotDataPoints(Z(sel, :), idx(sel), K);
